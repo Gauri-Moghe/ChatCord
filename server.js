@@ -12,14 +12,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Run when the client connects
 io.on('connection', socket => {
-    console.log('New WS Connection...');
 
+    // console.log('New WS Connection...');
+
+    //Welcoming the current user
     socket.emit('message', 'Welcome to ChatCord!');
 
     //Broadcast when a user connects
     socket.broadcast.emit('message', 'A user has joined the chat');
 
     //this code runs when client disconnects
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left the chat');
+
+    });
+
+    //Listening for the chat message
+    socket.on('chatMessage', msg => {
+        // console.log(msg);
+        io.emit('message', msg);
+    });
 
 });
 
