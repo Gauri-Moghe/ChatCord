@@ -1,5 +1,4 @@
-const moment = require('moment');
-
+const moment = require('moment'); //to generate the time stamp
 
 function formatMessage(username, text) {
 
