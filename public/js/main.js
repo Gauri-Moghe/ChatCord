@@ -15,7 +15,7 @@ const socket = io(); //connects to server
 //joining the chatroom
 socket.emit('joinRoom', {username, room});
 
-//Getting the room and uses
+//Getting the room and user
 socket.on('roomUsers', ({room, users}) =>{
     outputRoomName(room);
     outputUsers(users);
